@@ -1,4 +1,4 @@
-package fr.eni.projeteni;
+package fr.eni.abono;
 
 import android.content.Context;
 
@@ -22,6 +22,6 @@ public class ExampleInstrumentedTest {
         // Context of the app under test.
         Context appContext = InstrumentationRegistry.getInstrumentation().getTargetContext();
 
-        assertEquals("fr.eni.projeteni", appContext.getPackageName());
+        assertEquals("fr.eni.abono", appContext.getPackageName());
     }
 }
