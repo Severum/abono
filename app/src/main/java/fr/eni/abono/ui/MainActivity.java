@@ -45,12 +45,20 @@ public class MainActivity extends AppCompatActivity {
                 Priority.IMPORTANT)
         );
         testData.add(new Subscription(
-                300,
+                14,
                 1/12,
                 "Netflix",
                 "acces internet",
                 Priority.OPTIONAL)
         );
+
+        int yearTot = 0;
+        for (int i = 0; i<testData.size(); i++) {
+            yearTot += testData.get(i).getPrice() * (1/testData.get(i).getFrequency());
+        }
+
+        // textViewTotMonth.setText();
+        textViewTotYear.setText(String.valueOf(yearTot));
 
         listViewData.setAdapter(new SubscriptionAdapter(
                 MainActivity.this,
