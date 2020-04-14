@@ -3,7 +3,6 @@ package fr.eni.abono.ui;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
-import android.util.Log;
 import android.widget.ListView;
 import android.widget.TextView;
 
@@ -11,8 +10,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 import fr.eni.abono.R;
-import fr.eni.abono.models.Priority;
-import fr.eni.abono.models.Subscription;
+import fr.eni.abono.bo.Priority;
+import fr.eni.abono.bo.Subscription;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -60,7 +59,6 @@ public class MainActivity extends AppCompatActivity {
 
         // textViewTotMonth.setText();
         textViewTotYear.setText(String.valueOf(yearTot));
-        Log.d("TOT", String.valueOf(yearTot));
 
         listViewData.setAdapter(new SubscriptionAdapter(
                 MainActivity.this,
