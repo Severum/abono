@@ -1,14 +1,10 @@
 package fr.eni.abono.bo;
 
-<<<<<<< HEAD
-public class Category {
-
-    private long id;
-    private String name;
-=======
 import androidx.room.ColumnInfo;
+import androidx.room.Entity;
 import androidx.room.PrimaryKey;
 
+@Entity
 public class Category {
 
     @PrimaryKey(autoGenerate = true)
@@ -18,7 +14,6 @@ public class Category {
     private String name;
 
     @ColumnInfo(name = "description")
->>>>>>> database
     private String description;
 
     public Category(String name, String description) {
