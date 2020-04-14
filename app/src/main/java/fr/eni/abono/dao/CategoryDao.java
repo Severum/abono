@@ -1,5 +1,6 @@
 package fr.eni.abono.dao;
 
+import androidx.room.Dao;
 import androidx.room.Delete;
 import androidx.room.Insert;
 import androidx.room.Query;
@@ -8,6 +9,7 @@ import java.util.List;
 
 import fr.eni.abono.bo.Category;
 
+@Dao
 public interface CategoryDao {
     @Query("SELECT * FROM Category")
     List<Category> findAll();
