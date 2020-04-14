@@ -1,3 +1,8 @@
 <resources>
     <string name="app_name">Abono</string>
+    <string name="total">Total</string>
+    <string name="mensuel">Mensuel</string>
+    <string name="annuel">Annuel</string>
+    <string name="addButton">+</string>
+    <string name="valider">valider</string>
 </resources>
