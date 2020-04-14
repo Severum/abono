@@ -1,9 +1,19 @@
 package fr.eni.abono.bo;
 
+import androidx.room.ColumnInfo;
+import androidx.room.Entity;
+import androidx.room.PrimaryKey;
+
+@Entity
 public class Category {
 
+    @PrimaryKey(autoGenerate = true)
     private long id;
+
+    @ColumnInfo(name = "name")
     private String name;
+
+    @ColumnInfo(name = "description")
     private String description;
 
     public Category(String name, String description) {
