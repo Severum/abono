@@ -1,7 +1,8 @@
-package fr.eni.abono.models;
+package fr.eni.abono.bo;
 
 public class Category {
 
+    private long id;
     private String name;
     private String description;
 
