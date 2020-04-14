@@ -1,6 +1,6 @@
 package fr.eni.abono.models;
 
-enum Priority {
+public enum Priority {
     INDISPENSABLE("Indispensable"),
     IMPORTANT("Important"),
     OPTIONAL("Optional");
