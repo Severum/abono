@@ -1,6 +1,8 @@
-package fr.eni.abono.models;
+package fr.eni.abono.bo;
 
 public class Subscription {
+
+    private long id;
     private float price;
     private float frequency;
     private String name;
@@ -17,6 +19,24 @@ public class Subscription {
         this.priority = priority;
     }
 
+    public Subscription(long id, float price, float frequency, String name, String description,
+                        Priority priority)
+    {
+        this.id = id;
+        this.price = price;
+        this.frequency = frequency;
+        this.name = name;
+        this.description = description;
+        this.priority = priority;
+    }
+
+    public long getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
 
     public Priority getPriority() {
         return priority;
