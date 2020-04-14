@@ -4,7 +4,7 @@ import fr.eni.abono.bo.Priority;
 
 public class Subscription {
     private float price;
-    private float frequency;
+    private double frequency;
     private String name;
     private String description;
     private Priority priority;
