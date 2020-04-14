@@ -1,4 +1,4 @@
-package fr.eni.projeteni;
+package fr.eni.abono;
 
 import androidx.appcompat.app.AppCompatActivity;
 
