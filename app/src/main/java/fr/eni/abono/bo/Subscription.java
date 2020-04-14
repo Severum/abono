@@ -1,36 +1,5 @@
 package fr.eni.abono.bo;
 
-<<<<<<< HEAD
-public class Subscription {
-
-    private long id;
-    private float price;
-    private float frequency;
-    private String name;
-    private String description;
-    private Priority priority;
-
-    public Subscription(float price, float frequency, String name, String description,
-                        Priority priority)
-    {
-        this.price = price;
-        this.frequency = frequency;
-        this.name = name;
-        this.description = description;
-        this.priority = priority;
-    }
-
-    public Subscription(long id, float price, float frequency, String name, String description,
-                        Priority priority)
-    {
-        this.id = id;
-        this.price = price;
-        this.frequency = frequency;
-        this.name = name;
-        this.description = description;
-        this.priority = priority;
-    }
-=======
 import androidx.room.ColumnInfo;
 import androidx.room.Entity;
 import androidx.room.PrimaryKey;
@@ -55,7 +24,14 @@ public class Subscription {
 
     @ColumnInfo(name = "priority")
     private Priority priority;
->>>>>>> database
+
+    public Subscription(float price, float frequency, String name, String description, Priority priority) {
+        this.price = price;
+        this.frequency = frequency;
+        this.name = name;
+        this.description = description;
+        this.priority = priority;
+    }
 
     public long getId() {
         return id;
