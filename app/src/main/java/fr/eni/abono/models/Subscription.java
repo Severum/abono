@@ -2,7 +2,7 @@ package fr.eni.abono.models;
 
 public class Subscription {
     private float price;
-    private double frequency;
+    private float frequency;
     private String name;
     private String description;
     private Priority priority;
@@ -41,11 +41,11 @@ public class Subscription {
         this.name = name;
     }
 
-    public double getFrequency() {
+    public float getFrequency() {
         return frequency;
     }
 
-    public void setFrequency(double frequency) {
+    public void setFrequency(float frequency) {
         this.frequency = frequency;
     }
 
