@@ -3,12 +3,15 @@ package fr.eni.abono.bo;
 import androidx.room.ColumnInfo;
 import androidx.room.Entity;
 import androidx.room.PrimaryKey;
+import androidx.room.TypeConverters;
+
+import fr.eni.abono.dao.PriorityConverter;
 
 @Entity
 public class Subscription {
 
     @PrimaryKey(autoGenerate = true)
-    private long id;
+    private int id;
 
     @ColumnInfo(name = "price")
     private float price;
@@ -23,6 +26,7 @@ public class Subscription {
     private String description;
 
     @ColumnInfo(name = "priority")
+    @TypeConverters(PriorityConverter.class)
     private Priority priority;
 
     public Subscription(float price, float frequency, String name, String description, Priority priority) {
@@ -33,7 +37,7 @@ public class Subscription {
         this.priority = priority;
     }
 
-    public long getId() {
+    public int getId() {
         return id;
     }
 

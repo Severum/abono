@@ -1,5 +1,6 @@
 package fr.eni.abono.dao;
 
+import androidx.room.Dao;
 import androidx.room.Delete;
 import androidx.room.Insert;
 import androidx.room.Query;
@@ -8,6 +9,7 @@ import java.util.List;
 
 import fr.eni.abono.bo.Subscription;
 
+@Dao
 public interface SubscriptionDao  {
     @Query("SELECT * FROM Subscription")
     List<Subscription> findAll();
