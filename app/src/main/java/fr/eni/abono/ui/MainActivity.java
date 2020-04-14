@@ -33,21 +33,21 @@ public class MainActivity extends AppCompatActivity {
 
         testData.add(new Subscription(
                 20,
-                1/12,
+                (float)1/(float)12,
                 "eau",
                 "Glou glou",
                 Priority.INDISPENSABLE)
         );
         testData.add(new Subscription(
                 30,
-                1/12,
+                (float)1/(float)12,
                 "FAI",
                 "acces internet",
                 Priority.IMPORTANT)
         );
         testData.add(new Subscription(
                 14,
-                1/12,
+                (float)1/(float)12,
                 "Netflix",
                 "acces internet",
                 Priority.OPTIONAL)
@@ -58,7 +58,6 @@ public class MainActivity extends AppCompatActivity {
         for (int i = 0; i<testData.size(); i++) {
             temp = testData.get(i).getFrequency();
             yearTot += testData.get(i).getPrice() * (1/testData.get(i).getFrequency());
-            Log.println(Log.INFO, null, "\n\n"+String.valueOf(1/testData.get(i).getFrequency()));
         }
 
         textViewTotMonth.setText(String.valueOf(yearTot / 12));
