@@ -1,22 +1,37 @@
-package fr.eni.abono.models;
+package fr.eni.abono.bo;
 
+import androidx.room.ColumnInfo;
+import androidx.room.Entity;
+import androidx.room.PrimaryKey;
+
+@Entity
 public class Subscription {
+
+    @PrimaryKey(autoGenerate = true)
+    private long id;
+
+    @ColumnInfo(name = "price")
     private float price;
+
+    @ColumnInfo(name = "frequency")
     private float frequency;
+
+    @ColumnInfo(name = "name")
     private String name;
+
+    @ColumnInfo(name = "description")
     private String description;
+
+    @ColumnInfo(name = "priority")
     private Priority priority;
 
-    public Subscription(float price, float frequency, String name, String description,
-                        Priority priority)
-    {
-        this.price = price;
-        this.frequency = frequency;
-        this.name = name;
-        this.description = description;
-        this.priority = priority;
+    public long getId() {
+        return id;
     }
 
+    public void setId(int id) {
+        this.id = id;
+    }
 
     public Priority getPriority() {
         return priority;
