@@ -43,11 +43,11 @@ public class Subscription {
         this.name = name;
     }
 
-    public float getFrequency() {
+    public double getFrequency() {
         return frequency;
     }
 
-    public void setFrequency(float frequency) {
+    public void setFrequency(double frequency) {
         this.frequency = frequency;
     }
 
