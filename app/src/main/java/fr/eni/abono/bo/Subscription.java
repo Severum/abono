@@ -5,10 +5,12 @@ import androidx.room.Entity;
 import androidx.room.PrimaryKey;
 import androidx.room.TypeConverters;
 
+import java.io.Serializable;
+
 import fr.eni.abono.dao.PriorityConverter;
 
 @Entity
-public class Subscription {
+public class Subscription implements Serializable {
 
     @PrimaryKey(autoGenerate = true)
     private int id;

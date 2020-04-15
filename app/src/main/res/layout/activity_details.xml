@@ -3,8 +3,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ui.AddSubscriptionActivity"
-    android:orientation="vertical">
+    android:orientation="vertical"
+    tools:context=".ui.DetailsActivity">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -19,6 +19,7 @@
             android:text="Nom">
         </TextView>
         <EditText
+            android:id="@+id/editTextName"
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
         </EditText>
@@ -29,6 +30,7 @@
             android:text="Prix">
         </TextView>
         <EditText
+            android:id="@+id/editTextPrice"
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
         </EditText>
@@ -39,6 +41,7 @@
             android:text="frequency">
         </TextView>
         <EditText
+            android:id="@+id/editTextFrequency"
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
         </EditText>
@@ -49,6 +52,7 @@
             android:text="description">
         </TextView>
         <EditText
+            android:id="@+id/editTextDescription"
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
         </EditText>

@@ -6,6 +6,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ListView;
 import android.widget.TextView;
 
@@ -70,6 +71,20 @@ public class MainActivity extends AppCompatActivity {
                 R.layout.item_subscription,
                 testData
         ));
+
+        listViewData.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+
+                Subscription item = testData.get(position);
+
+                Intent intent = new Intent(MainActivity.this, DetailsActivity.class);
+
+                intent.putExtra("object", item);
+
+                startActivity(intent);
+            }
+        });
     }
 
     public void addSubscription(View view) {
