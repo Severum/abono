@@ -29,7 +29,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:padding="5dp"
-                android:text="@string/mensuel"/>
+                android:text="@string/monthly"/>
 
             <TextView
                 android:id="@+id/textViewTotMonth"
@@ -42,14 +42,13 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:padding="5dp"
-                android:text="@string/annuel"/>
+                android:text="@string/annually"/>
 
             <TextView
                 android:id="@+id/textViewTotYear"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:paddingLeft="5dp"/>
-
         </LinearLayout>
 
     </LinearLayout>
@@ -70,7 +69,7 @@
             android:id="@+id/buttonAdd"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="@string/addButton"
+            android:text="@string/add"
             android:onClick="addSubscription"/>
 
     </LinearLayout>
