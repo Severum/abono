@@ -2,7 +2,9 @@ package fr.eni.abono.ui;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.EditText;
@@ -11,6 +13,8 @@ import android.widget.Spinner;
 import fr.eni.abono.R;
 import fr.eni.abono.bo.Priority;
 import fr.eni.abono.bo.Subscription;
+import fr.eni.abono.dao.AppDatabase;
+import fr.eni.abono.dao.Connexion;
 
 public class DetailsActivity extends AppCompatActivity {
 
@@ -64,6 +68,39 @@ public class DetailsActivity extends AppCompatActivity {
     }
 
     public void validSubscription(View view) {
+        new Thread(new Runnable() {
+            @Override
+            public void run() {
+                Subscription item = (Subscription) getIntent().getExtras().get("object");
+                item.setPrice(Float.parseFloat(editTextPrice.getText().toString()));
+                item.setFrequency(Float.parseFloat(editTextFrequency.getText().toString()));
+                item.setName(String.valueOf(editTextName.getText()));
+                item.setDescription(String.valueOf(editTextDescription.getText()));
+                AppDatabase db = Connexion.getConnexion(DetailsActivity.this);
+                db.subscriptionDao().update(item);
+            }
+        }).start();
 
+        Log.d("validSubscription", "Subscription added in database");
+
+        Intent intentAddSubscription = new Intent(DetailsActivity.this, MainActivity.class);
+        startActivity(intentAddSubscription);
+    }
+
+    public void removeSubscription(View view) {
+        final Subscription item = (Subscription) getIntent().getExtras().get("object");
+
+        new Thread(new Runnable() {
+            @Override
+            public void run() {
+                AppDatabase db = Connexion.getConnexion(DetailsActivity.this);
+                db.subscriptionDao().delete(item);
+            }
+        }).start();
+
+        Log.d("removeSubscription", "Subscription deleted from database");
+
+        Intent intentAddSubscription = new Intent(DetailsActivity.this, MainActivity.class);
+        startActivity(intentAddSubscription);
     }
 }

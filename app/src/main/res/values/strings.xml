@@ -9,4 +9,5 @@
     <string name="price_field_label">Price</string>
     <string name="frequency_field_label">Frequency</string>
     <string name="description_field_label">Description</string>
+    <string name="remove">Remove</string>
 </resources>

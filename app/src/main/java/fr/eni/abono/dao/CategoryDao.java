@@ -14,10 +14,10 @@ public interface CategoryDao {
     @Query("SELECT * FROM Category")
     List<Category> findAll();
 
-    @Query("SELECT * FROM Subscription WHERE id = (:id)")
+    @Query("SELECT * FROM Category WHERE id = (:id)")
     Category findById(int id);
 
-    @Query("SELECT * FROM Subscription WHERE name = (:name)")
+    @Query("SELECT * FROM Category WHERE name = (:name)")
     Category findByName(String name);
 
     @Insert
