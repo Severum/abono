@@ -10,6 +10,7 @@ import android.widget.AdapterView;
 import android.widget.ListView;
 import android.widget.TextView;
 
+import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -24,6 +25,8 @@ public class MainActivity extends AppCompatActivity {
     private TextView textViewTotMonth;
     private TextView textViewTotYear;
     private ListView listViewData;
+
+    private static DecimalFormat df = new DecimalFormat("0.00");
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -44,18 +47,16 @@ public class MainActivity extends AppCompatActivity {
                 list = db.subscriptionDao().findAll();
                 subscriptions.addAll(list);
 
+                float yearTot = 0.f;
+                for (Subscription s : subscriptions) {
+                    yearTot += s.getPrice() * (1/s.getFrequency().getValue());
+                }
+
+                textViewTotMonth.setText("" + df.format(yearTot / 12) + "€");
+                textViewTotYear.setText("" + df.format(yearTot) + "€");
+
             }
         }).start();
-
-        float yearTot = 0;
-        double temp = 0;
-        for (int i = 0; i<subscriptions.size(); i++) {
-            temp = subscriptions.get(i).getFrequency();
-            yearTot += subscriptions.get(i).getPrice() * (1/subscriptions.get(i).getFrequency());
-        }
-
-        textViewTotMonth.setText(String.valueOf(yearTot / 12)+"€");
-        textViewTotYear.setText(String.valueOf(yearTot)+"€");
 
         listViewData.setAdapter(new SubscriptionAdapter(
                 MainActivity.this,
