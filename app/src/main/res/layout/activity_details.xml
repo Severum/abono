@@ -16,9 +16,11 @@
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Nom">
+            android:text="@string/name_field_label">
         </TextView>
         <EditText
+            android:inputType="text"
+            android:imeOptions="actionNext"
             android:id="@+id/editTextName"
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
@@ -27,9 +29,11 @@
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Prix">
+            android:text="@string/price_field_label">
         </TextView>
         <EditText
+            android:imeOptions="actionNext"
+            android:inputType="numberDecimal"
             android:id="@+id/editTextPrice"
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
@@ -38,20 +42,23 @@
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="frequency">
+            android:text="@string/frequency_field_label">
         </TextView>
-        <EditText
-            android:id="@+id/editTextFrequency"
+        <Spinner
+            android:id="@+id/frequencyDropDown"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
-        </EditText>
+            android:layout_height="wrap_content"
+            android:background="@android:drawable/btn_dropdown"
+            android:spinnerMode="dropdown"/>
 
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="description">
+            android:text="@string/description_field_label">
         </TextView>
         <EditText
+            android:inputType="text"
+            android:imeOptions="actionNext"
             android:id="@+id/editTextDescription"
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
@@ -60,7 +67,7 @@
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="priorité">
+            android:text="Priority">
         </TextView>
         <Spinner
             android:id="@+id/priorityDropDown"

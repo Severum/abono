@@ -46,7 +46,7 @@ public class MainActivity extends AppCompatActivity {
 
                 float yearTot = 0;
                 for(Subscription s : list) {
-                    yearTot += s.getPrice() * (1/s.getFrequency());
+                    yearTot += s.getPrice() * (1/s.getFrequency().getValue());
                 }
 
                 textViewTotMonth.setText(String.valueOf(yearTot / 12));
