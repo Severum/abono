@@ -44,13 +44,12 @@
             android:layout_height="wrap_content"
             android:text="@string/frequency_field_label">
         </TextView>
-        <EditText
-            android:imeOptions="actionNext"
-            android:inputType="numberSigned"
-            android:id="@+id/editTextFrequency"
+        <Spinner
+            android:id="@+id/frequencyDropDown"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
-        </EditText>
+            android:layout_height="wrap_content"
+            android:background="@android:drawable/btn_dropdown"
+            android:spinnerMode="dropdown"/>
 
         <TextView
             android:layout_width="match_parent"
