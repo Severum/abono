@@ -49,7 +49,7 @@ public class SubscriptionAdapter extends ArrayAdapter<Subscription> {
         Subscription item = getItem(position);
 
         myViewHolder.textViewName.setText(item.getName());
-        myViewHolder.textViewPrice.setText(String.valueOf(item.getPrice()));
+        myViewHolder.textViewPrice.setText(String.valueOf(item.getPrice())+"€");
         myViewHolder.textViewPriority.setText(String.valueOf(item.getPriority()));
 
         return convertView;
