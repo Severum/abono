@@ -10,6 +10,7 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
+import java.text.DecimalFormat;
 import java.util.List;
 
 import fr.eni.abono.R;
@@ -18,6 +19,8 @@ import fr.eni.abono.bo.Subscription;
 public class SubscriptionAdapter extends ArrayAdapter<Subscription> {
 
     private int resId;
+
+    private static DecimalFormat df = new DecimalFormat("0.00");
 
     public SubscriptionAdapter(@NonNull Context context, int resource, @NonNull List<Subscription> objects) {
         super(context, resource, objects);
@@ -49,7 +52,7 @@ public class SubscriptionAdapter extends ArrayAdapter<Subscription> {
         Subscription item = getItem(position);
 
         myViewHolder.textViewName.setText(item.getName());
-        myViewHolder.textViewPrice.setText(String.valueOf(item.getPrice())+"€");
+        myViewHolder.textViewPrice.setText(df.format(item.getPrice()) + "€");
         myViewHolder.textViewPriority.setText(String.valueOf(item.getPriority()));
 
         return convertView;

@@ -80,7 +80,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void addSubscription(View view) {
-        Intent intentAddSubscription = new Intent(MainActivity.this, AddSubscriptionActivity.class);
+        Intent intentAddSubscription = new Intent(MainActivity.this, DetailsActivity.class);
 
         startActivity(intentAddSubscription);
     }
