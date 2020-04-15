@@ -9,7 +9,7 @@
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="0dp"
         android:layout_weight="1"
         android:padding="16dp"
         android:orientation="vertical">
@@ -17,9 +17,12 @@
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Nom">
+            android:text="@string/name_field_label">
         </TextView>
         <EditText
+            android:inputType="text"
+            android:imeOptions="actionNext"
+            android:id="@+id/editTextName"
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
         </EditText>
@@ -27,9 +30,12 @@
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Prix">
+            android:text="@string/price_field_label">
         </TextView>
         <EditText
+            android:imeOptions="actionNext"
+            android:inputType="numberDecimal"
+            android:id="@+id/editTextPrice"
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
         </EditText>
@@ -37,9 +43,12 @@
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="frequency">
+            android:text="@string/frequency_field_label">
         </TextView>
         <EditText
+            android:imeOptions="actionNext"
+            android:inputType="numberSigned"
+            android:id="@+id/editTextFrequency"
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
         </EditText>
@@ -47,9 +56,12 @@
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="description">
+            android:text="@string/description_field_label">
         </TextView>
         <EditText
+            android:inputType="text"
+            android:imeOptions="actionNext"
+            android:id="@+id/editTextDescription"
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
         </EditText>
@@ -57,7 +69,7 @@
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="priorité">
+            android:text="Priority">
         </TextView>
         <Spinner
             android:id="@+id/priorityDropDown"
@@ -77,7 +89,7 @@
             android:id="@+id/buttonAdd"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="@string/valider"
+            android:text="@string/save"
             android:onClick="validSubscription"/>
 
     </LinearLayout>

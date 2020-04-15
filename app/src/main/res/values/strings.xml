@@ -1,8 +1,12 @@
 <resources>
     <string name="app_name">Abono</string>
     <string name="total">Total</string>
-    <string name="mensuel">Mensuel</string>
-    <string name="annuel">Annuel</string>
-    <string name="addButton">+</string>
-    <string name="valider">valider</string>
+    <string name="monthly">Monthly</string>
+    <string name="annually">Annually</string>
+    <string name="add">Add a subscription</string>
+    <string name="save">Save</string>
+    <string name="name_field_label">Name</string>
+    <string name="price_field_label">Price</string>
+    <string name="frequency_field_label">Frequency</string>
+    <string name="description_field_label">Description</string>
 </resources>
