@@ -66,7 +66,7 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
 
-                Subscription item = testData.get(position);
+                Subscription item = subscriptions.get(position);
 
                 Intent intent = new Intent(MainActivity.this, DetailsActivity.class);
 
