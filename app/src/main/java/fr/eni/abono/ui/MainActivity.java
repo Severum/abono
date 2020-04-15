@@ -53,8 +53,8 @@ public class MainActivity extends AppCompatActivity {
             yearTot += subscriptions.get(i).getPrice() * (1/subscriptions.get(i).getFrequency());
         }
 
-        textViewTotMonth.setText(String.valueOf(yearTot / 12));
-        textViewTotYear.setText(String.valueOf(yearTot));
+        textViewTotMonth.setText(String.valueOf(yearTot / 12)+"€");
+        textViewTotYear.setText(String.valueOf(yearTot)+"€");
 
         listViewData.setAdapter(new SubscriptionAdapter(
                 MainActivity.this,
