@@ -73,20 +73,21 @@
 
     <LinearLayout
         android:layout_gravity="center_horizontal"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal">
 
         <Button
             android:id="@+id/buttonRemove"
+            android:layout_weight="1"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="@string/remove"
             android:onClick="removeSubscription"/>
 
         <Button
-            android:background="@color/colorPrimary"
             android:id="@+id/buttonAdd"
+            android:layout_weight="1"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="@string/save"
