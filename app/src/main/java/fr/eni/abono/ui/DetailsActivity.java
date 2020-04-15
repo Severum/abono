@@ -2,6 +2,8 @@ package fr.eni.abono.ui;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
@@ -90,17 +92,32 @@ public class DetailsActivity extends AppCompatActivity {
     public void removeSubscription(View view) {
         final Subscription item = (Subscription) getIntent().getExtras().get("object");
 
-        new Thread(new Runnable() {
-            @Override
-            public void run() {
-                AppDatabase db = Connexion.getConnexion(DetailsActivity.this);
-                db.subscriptionDao().delete(item);
-            }
-        }).start();
+        new AlertDialog.Builder(DetailsActivity.this)
+                .setTitle("Delete entry")
+                .setMessage("Are you sure you want to delete this entry?")
 
-        Log.d("removeSubscription", "Subscription deleted from database");
+                // Specifying a listener allows you to take an action before dismissing the dialog.
+                // The dialog is automatically dismissed when a dialog button is clicked.
+                .setPositiveButton(android.R.string.yes, new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int which) {
+                        new Thread(new Runnable() {
+                            @Override
+                            public void run() {
+                                AppDatabase db = Connexion.getConnexion(DetailsActivity.this);
+                                db.subscriptionDao().delete(item);
+                            }
+                        }).start();
 
-        Intent intentAddSubscription = new Intent(DetailsActivity.this, MainActivity.class);
-        startActivity(intentAddSubscription);
+                        Log.d("removeSubscription", "Subscription deleted from database");
+
+                        Intent intentAddSubscription = new Intent(DetailsActivity.this, MainActivity.class);
+                        startActivity(intentAddSubscription);
+                    }
+                })
+
+                // A null listener allows the button to dismiss the dialog and take no further action.
+                .setNegativeButton(android.R.string.no, null)
+                .setIcon(android.R.drawable.ic_dialog_alert)
+                .show();
     }
 }
