@@ -16,6 +16,8 @@ import java.util.List;
 import fr.eni.abono.R;
 import fr.eni.abono.bo.Priority;
 import fr.eni.abono.bo.Subscription;
+import fr.eni.abono.dao.AppDatabase;
+import fr.eni.abono.dao.Connexion;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -32,35 +34,23 @@ public class MainActivity extends AppCompatActivity {
         textViewTotYear = findViewById(R.id.textViewTotYear);
         listViewData = findViewById(R.id.listViewData);
 
-        final List<Subscription> testData = new ArrayList<>();
+        final List<Subscription> subscriptions = new ArrayList<>();
 
-        testData.add(new Subscription(
-                20,
-                (float)1/(float)12,
-                "eau",
-                "Glou glou",
-                Priority.INDISPENSABLE)
-        );
-        testData.add(new Subscription(
-                30,
-                (float)1/(float)12,
-                "FAI",
-                "acces internet",
-                Priority.IMPORTANT)
-        );
-        testData.add(new Subscription(
-                14,
-                (float)1/(float)12,
-                "Netflix",
-                "acces internet",
-                Priority.OPTIONAL)
-        );
+        new Thread(new Runnable() {
+            @Override
+            public void run() {
+                AppDatabase db = Connexion.getConnexion(MainActivity.this);
+                List<Subscription> list = new ArrayList<>();
+                list = db.subscriptionDao().findAll();
+                subscriptions.addAll(list);
+            }
+        }).start();
 
         float yearTot = 0;
         double temp = 0;
-        for (int i = 0; i<testData.size(); i++) {
-            temp = testData.get(i).getFrequency();
-            yearTot += testData.get(i).getPrice() * (1/testData.get(i).getFrequency());
+        for (int i = 0; i<subscriptions.size(); i++) {
+            temp = subscriptions.get(i).getFrequency();
+            yearTot += subscriptions.get(i).getPrice() * (1/subscriptions.get(i).getFrequency());
         }
 
         textViewTotMonth.setText(String.valueOf(yearTot / 12));
@@ -69,7 +59,7 @@ public class MainActivity extends AppCompatActivity {
         listViewData.setAdapter(new SubscriptionAdapter(
                 MainActivity.this,
                 R.layout.item_subscription,
-                testData
+                subscriptions
         ));
 
         listViewData.setOnItemClickListener(new AdapterView.OnItemClickListener() {
