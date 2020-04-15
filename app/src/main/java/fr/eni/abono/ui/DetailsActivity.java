@@ -95,7 +95,7 @@ public class DetailsActivity extends AppCompatActivity {
         }
     }
 
-    public void validSubscription(View view) {
+    public void updateSubscription(View view) {
         new Thread(new Runnable() {
             @Override
             public void run() {
