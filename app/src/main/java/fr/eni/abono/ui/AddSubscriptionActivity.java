@@ -11,6 +11,7 @@ import android.widget.EditText;
 import android.widget.Spinner;
 
 import fr.eni.abono.R;
+import fr.eni.abono.bo.Frequency;
 import fr.eni.abono.bo.Priority;
 import fr.eni.abono.bo.Subscription;
 import fr.eni.abono.dao.AppDatabase;
@@ -33,21 +34,19 @@ public class AddSubscriptionActivity extends AppCompatActivity {
         editTextDescription = findViewById(R.id.editTextDescription);
         editTextPrice = findViewById(R.id.editTextPrice);
         frequencyDropDown = findViewById(R.id.frequencyDropDown);
-        String[] frequencyItems = new String[]{
-                "weekly",
-                "monthly",
-                "annually"
-        };
-        ArrayAdapter<String> frequencyAdapter = new ArrayAdapter<>(this, android.R.layout.simple_spinner_dropdown_item, frequencyItems);
+        ArrayAdapter<CharSequence> frequencyAdapter =  ArrayAdapter.createFromResource(
+                this,
+                R.array.frequency_array,
+                android.R.layout.simple_spinner_dropdown_item
+        );
         frequencyDropDown.setAdapter(frequencyAdapter);
 
         dropdownPriority = findViewById(R.id.priorityDropDown);
-        String[] priorityItems = new String[]{
-                Priority.INDISPENSABLE.toString(),
-                Priority.IMPORTANT.toString(),
-                Priority.OPTIONAL.toString()
-        };
-        ArrayAdapter<String> priorityAdapter = new ArrayAdapter<>(this, android.R.layout.simple_spinner_dropdown_item, priorityItems);
+        ArrayAdapter<CharSequence> priorityAdapter =  ArrayAdapter.createFromResource(
+                this,
+                R.array.priority_array,
+                android.R.layout.simple_spinner_dropdown_item
+        );
         dropdownPriority.setAdapter(priorityAdapter);
     }
 
@@ -60,36 +59,37 @@ public class AddSubscriptionActivity extends AppCompatActivity {
                 // float frequency = Float.parseFloat(editTextFrequency.getText().toString());
                 String name = String.valueOf(editTextName.getText());
                 String description = String.valueOf(editTextDescription.getText());
-                float frequency = 1; // default annually
-                switch (frequencyDropDown.getSelectedItem().toString()) {
-                    case "weekly":
-                        frequency = (float)1/(float)53;
+                Frequency frequency = null;
+                switch (frequencyDropDown.getSelectedItemPosition()) {
+                    case 0:
+                        frequency = Frequency.DAILY;
                         break;
-                    case "monthly":
-                        frequency = (float)1/(float)12;
+                    case 1:
+                        frequency = Frequency.WEEKLY;
                         break;
-                    case "annually":
-                        frequency = (float)1;
+                    case 2:
+                        frequency = Frequency.MONTHLY;
                         break;
-                    default:
+                    case 3:
+                        frequency = Frequency.QUARTERLY;
+                        break;
+                    case 4:
+                        frequency = Frequency.SEMESTERLY;
+                        break;
+                    case 5:
+                        frequency = Frequency.ANNUALLY;
                         break;
                 }
                 Subscription subscription;
+                Priority priority = Priority.OPTIONAL;
                 switch (dropdownPriority.getSelectedItem().toString()) {
                     case "Indispensable":
-                        subscription = new Subscription(price, frequency, name, description, Priority.INDISPENSABLE);
+                        priority = Priority.INDISPENSABLE;
                         break;
                     case "Important":
-                        subscription = new Subscription(price, frequency, name, description, Priority.IMPORTANT);
-                        break;
-                    case "Optional":
-                        subscription = new Subscription(price, frequency, name, description, Priority.OPTIONAL);
-                        break;
-                    default:
-                        // TODO handle error
-                        subscription = null;
-                        break;
+                        priority = Priority.IMPORTANT;
                 }
+                subscription = new Subscription(price, frequency, name, description, priority);
                 AppDatabase db = Connexion.getConnexion(AddSubscriptionActivity.this);
                 db.subscriptionDao().insert(subscription);
             }
