@@ -40,6 +40,7 @@ public class SubscriptionAdapter extends ArrayAdapter<Subscription> {
             myViewHolder.textViewName = convertView.findViewById(R.id.textViewName);
             myViewHolder.textViewPrice = convertView.findViewById(R.id.textViewPrice);
             myViewHolder.textViewPriority = convertView.findViewById(R.id.textViewPriority);
+            myViewHolder.textViewFrequency = convertView.findViewById(R.id.textViewFrequency);
 
             convertView.setTag(myViewHolder); // enregistrement du ViewHolder
         } else {
@@ -51,11 +52,12 @@ public class SubscriptionAdapter extends ArrayAdapter<Subscription> {
         myViewHolder.textViewName.setText(item.getName());
         myViewHolder.textViewPrice.setText(String.valueOf(item.getPrice())+"€");
         myViewHolder.textViewPriority.setText(String.valueOf(item.getPriority()));
+        myViewHolder.textViewFrequency.setText(String.valueOf(item.getFrequency()));
 
         return convertView;
     }
 
     class ViewHolder {
-        TextView textViewName, textViewPrice, textViewPriority;
+        TextView textViewName, textViewPrice, textViewPriority, textViewFrequency;
     }
 }
