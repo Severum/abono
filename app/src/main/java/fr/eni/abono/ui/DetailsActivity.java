@@ -58,6 +58,8 @@ public class DetailsActivity extends AppCompatActivity {
 
             editTextName.setText(item.getName());
             editTextPrice.setText(String.valueOf(item.getPrice()));
+            editTextDescription.setText(item.getDescription());
+
             switch (item.getFrequency()) {
                 case DAILY:
                     frequencyDropDown.setSelection(0);
@@ -78,7 +80,6 @@ public class DetailsActivity extends AppCompatActivity {
                     frequencyDropDown.setSelection(5);
             }
 
-            editTextDescription.setText(item.getDescription());
             switch (item.getPriority()) {
                 case INDISPENSABLE:
                     priorityDropDown.setSelection(0);
@@ -119,6 +120,16 @@ public class DetailsActivity extends AppCompatActivity {
                         break;
                     case 5:
                         item.setFrequency(Frequency.ANNUALLY);
+                }
+                switch (priorityDropDown.getSelectedItemPosition()) {
+                    case 0:
+                        item.setPriority(Priority.INDISPENSABLE);
+                        break;
+                    case 1:
+                        item.setPriority(Priority.IMPORTANT);
+                        break;
+                    case 2:
+                        item.setPriority(Priority.OPTIONAL);
                 }
                 item.setName(String.valueOf(editTextName.getText()));
                 item.setDescription(String.valueOf(editTextDescription.getText()));

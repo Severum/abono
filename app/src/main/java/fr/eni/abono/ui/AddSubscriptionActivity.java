@@ -82,12 +82,15 @@ public class AddSubscriptionActivity extends AppCompatActivity {
                 }
                 Subscription subscription;
                 Priority priority = Priority.OPTIONAL;
-                switch (dropdownPriority.getSelectedItem().toString()) {
-                    case "Indispensable":
+                switch (dropdownPriority.getSelectedItemPosition()) {
+                    case 0:
                         priority = Priority.INDISPENSABLE;
                         break;
-                    case "Important":
+                    case 1:
                         priority = Priority.IMPORTANT;
+                        break;
+                    case 2:
+                        priority = Priority.OPTIONAL;
                 }
                 subscription = new Subscription(price, frequency, name, description, priority);
                 AppDatabase db = Connexion.getConnexion(AddSubscriptionActivity.this);
