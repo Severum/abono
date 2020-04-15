@@ -44,18 +44,16 @@ public class MainActivity extends AppCompatActivity {
                 list = db.subscriptionDao().findAll();
                 subscriptions.addAll(list);
 
+                float yearTot = 0;
+                for (int i = 0; i<subscriptions.size(); i++) {
+                    yearTot += subscriptions.get(i).getPrice() * (1/subscriptions.get(i).getFrequency().getValue());
+                }
+
+                textViewTotMonth.setText(String.valueOf(yearTot / 12)+"€");
+                textViewTotYear.setText(String.valueOf(yearTot)+"€");
             }
         }).start();
 
-        float yearTot = 0;
-        double temp = 0;
-        for (int i = 0; i<subscriptions.size(); i++) {
-            temp = subscriptions.get(i).getFrequency();
-            yearTot += subscriptions.get(i).getPrice() * (1/subscriptions.get(i).getFrequency());
-        }
-
-        textViewTotMonth.setText(String.valueOf(yearTot / 12)+"€");
-        textViewTotYear.setText(String.valueOf(yearTot)+"€");
 
         listViewData.setAdapter(new SubscriptionAdapter(
                 MainActivity.this,
