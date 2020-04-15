@@ -43,6 +43,7 @@ public class MainActivity extends AppCompatActivity {
                 List<Subscription> list = new ArrayList<>();
                 list = db.subscriptionDao().findAll();
                 subscriptions.addAll(list);
+
             }
         }).start();
 

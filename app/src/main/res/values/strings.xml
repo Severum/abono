@@ -10,4 +10,19 @@
     <string name="frequency_field_label">Frequency</string>
     <string name="description_field_label">Description</string>
     <string name="remove">Remove</string>
+
+    <string-array name="frequency_array">
+        <item>Daily</item>
+        <item>Weekly</item>
+        <item>Monthly</item>
+        <item>Quarterly</item>
+        <item>Semesterly</item>
+        <item>Annually</item>
+    </string-array>
+
+    <string-array name="priority_array">
+        <item>Indispensable</item>
+        <item>Important</item>
+        <item>Optional</item>
+    </string-array>
 </resources>

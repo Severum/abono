@@ -7,6 +7,7 @@ import androidx.room.TypeConverters;
 
 import java.io.Serializable;
 
+import fr.eni.abono.dao.FrequencyConverter;
 import fr.eni.abono.dao.PriorityConverter;
 
 @Entity
@@ -19,7 +20,8 @@ public class Subscription implements Serializable {
     private float price;
 
     @ColumnInfo(name = "frequency")
-    private float frequency;
+    @TypeConverters(FrequencyConverter.class)
+    private Frequency frequency;
 
     @ColumnInfo(name = "name")
     private String name;
@@ -31,7 +33,7 @@ public class Subscription implements Serializable {
     @TypeConverters(PriorityConverter.class)
     private Priority priority;
 
-    public Subscription(float price, float frequency, String name, String description, Priority priority) {
+    public Subscription(float price, Frequency frequency, String name, String description, Priority priority) {
         this.price = price;
         this.frequency = frequency;
         this.name = name;
@@ -71,11 +73,11 @@ public class Subscription implements Serializable {
         this.name = name;
     }
 
-    public float getFrequency() {
+    public Frequency getFrequency() {
         return frequency;
     }
 
-    public void setFrequency(float frequency) {
+    public void setFrequency(Frequency frequency) {
         this.frequency = frequency;
     }
 
