@@ -4,7 +4,6 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ListView;
@@ -15,7 +14,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 import fr.eni.abono.R;
-import fr.eni.abono.bo.Priority;
 import fr.eni.abono.bo.Subscription;
 import fr.eni.abono.dao.AppDatabase;
 import fr.eni.abono.dao.Connexion;
@@ -36,6 +34,8 @@ public class MainActivity extends AppCompatActivity {
         textViewTotMonth = findViewById(R.id.textViewTotMonth);
         textViewTotYear = findViewById(R.id.textViewTotYear);
         listViewData = findViewById(R.id.listViewData);
+
+        startService(listViewData);  // Quel view passer en parametre ?
 
         final List<Subscription> subscriptions = new ArrayList<>();
 
@@ -83,5 +83,9 @@ public class MainActivity extends AppCompatActivity {
         Intent intentAddSubscription = new Intent(MainActivity.this, DetailsActivity.class);
 
         startActivity(intentAddSubscription);
+    }
+
+    public void startService(View view) {
+        startService(new Intent(getBaseContext(), CheckOffers.class));
     }
 }
