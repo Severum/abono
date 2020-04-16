@@ -15,7 +15,12 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Spinner;
 
+import java.lang.reflect.Array;
+import java.util.ArrayList;
+import java.util.List;
+
 import fr.eni.abono.R;
+import fr.eni.abono.bo.Category;
 import fr.eni.abono.bo.Frequency;
 import fr.eni.abono.bo.Priority;
 import fr.eni.abono.bo.Subscription;
@@ -29,6 +34,7 @@ public class DetailsActivity extends AppCompatActivity {
     private EditText editTextDescription;
     private Spinner priorityDropDown;
     private Spinner frequencyDropDown;
+    private Spinner categoryDropDown;
     private Button buttonAdd;
     private Button buttonUpdate;
     private Button buttonRemove;
@@ -43,10 +49,10 @@ public class DetailsActivity extends AppCompatActivity {
         editTextDescription = findViewById(R.id.editTextDescription);
         frequencyDropDown = findViewById(R.id.frequencyDropDown);
         priorityDropDown = findViewById(R.id.priorityDropDown);
+        // categoryDropDown = findViewById(R.id.categoryDropDown);
         buttonAdd = findViewById(R.id.buttonAdd);
         buttonUpdate = findViewById(R.id.buttonUpdate);
         buttonRemove = findViewById(R.id.buttonRemove);
-
 
         ArrayAdapter<CharSequence> frequencyAdapter =  ArrayAdapter.createFromResource(
                 this,
@@ -61,6 +67,21 @@ public class DetailsActivity extends AppCompatActivity {
                 android.R.layout.simple_spinner_dropdown_item
         );
         priorityDropDown.setAdapter(priorityAdapter);
+
+        /*new Thread(new Runnable() {
+            @Override
+            public void run() {
+                AppDatabase db = Connexion.getConnexion(DetailsActivity.this);
+                List<Category> list = new ArrayList<>();
+                list = db.categoryDao().findAll();
+                String[] temp = new String[list.size()];
+                for (int i = 0; i<list.size(); i++) {
+                    temp[i] = list.get(i).getName();
+                }
+                ArrayAdapter<String> categoryAdapter = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_dropdown_item, temp);
+                priorityDropDown.setAdapter(categoryAdapter);
+            }
+        }).start();*/
 
         // test vérification extras
         if(getIntent().getExtras() != null) {
