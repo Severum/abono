@@ -22,12 +22,13 @@ public class CheckOffers extends Service {
 
     @Override
     public int onStartCommand(Intent intent, int flags, int startId) {
+        Toast.makeText(this, "Service Start", Toast.LENGTH_LONG).show();
         // API call
 
         // notification
         NotificationCompat.Builder builder;
 
-        builder = new NotificationCompat.Builder(this); // il faudrait ajouter un channel id en parametre mais je sais pas quoi mettre
+        builder = new NotificationCompat.Builder(this, ""); // il faudrait ajouter un channel id en parametre mais je sais pas quoi mettre
         builder.setAutoCancel(true);
 
         builder.setSmallIcon(R.drawable.ic_launcher_foreground);
@@ -38,7 +39,7 @@ public class CheckOffers extends Service {
         builder.setContentText("Hello everyOne !!!!");
 
         Intent intent2 = new Intent(this, MainActivity.class);
-        PendingIntent pendingIntent = PendingIntent.getActivity(this, 0, intent, PendingIntent.FLAG_UPDATE_CURRENT);
+        PendingIntent pendingIntent = PendingIntent.getActivity(this, 0, intent2, PendingIntent.FLAG_UPDATE_CURRENT);
         builder.setContentIntent(pendingIntent);
 
         NotificationManager notificationManager = (NotificationManager)getSystemService(NOTIFICATION_SERVICE);

@@ -49,7 +49,7 @@ public class DetailsActivity extends AppCompatActivity {
         editTextDescription = findViewById(R.id.editTextDescription);
         frequencyDropDown = findViewById(R.id.frequencyDropDown);
         priorityDropDown = findViewById(R.id.priorityDropDown);
-        // categoryDropDown = findViewById(R.id.categoryDropDown);
+        categoryDropDown = findViewById(R.id.categoryDropDown);
         buttonAdd = findViewById(R.id.buttonAdd);
         buttonUpdate = findViewById(R.id.buttonUpdate);
         buttonRemove = findViewById(R.id.buttonRemove);
@@ -68,20 +68,14 @@ public class DetailsActivity extends AppCompatActivity {
         );
         priorityDropDown.setAdapter(priorityAdapter);
 
-        /*new Thread(new Runnable() {
+        new Thread(new Runnable() {
             @Override
             public void run() {
                 AppDatabase db = Connexion.getConnexion(DetailsActivity.this);
-                List<Category> list = new ArrayList<>();
-                list = db.categoryDao().findAll();
-                String[] temp = new String[list.size()];
-                for (int i = 0; i<list.size(); i++) {
-                    temp[i] = list.get(i).getName();
-                }
-                ArrayAdapter<String> categoryAdapter = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_dropdown_item, temp);
-                priorityDropDown.setAdapter(categoryAdapter);
+                ArrayAdapter<Category> categoryAdapter = new ArrayAdapter<Category>(DetailsActivity.this, android.R.layout.simple_spinner_dropdown_item, db.categoryDao().findAll());
+                categoryDropDown.setAdapter(categoryAdapter);
             }
-        }).start();*/
+        }).start();
 
         // test vérification extras
         if(getIntent().getExtras() != null) {

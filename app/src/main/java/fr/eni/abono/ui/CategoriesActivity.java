@@ -27,8 +27,8 @@ public class CategoriesActivity extends AppCompatActivity {
     private ListView listViewData;
 
     @Override
-    public void onCreate(@Nullable Bundle savedInstanceState, @Nullable PersistableBundle persistentState) {
-        super.onCreate(savedInstanceState, persistentState);
+    public void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_categories);
 
         editTextCategoryName = findViewById(R.id.editTextCategoryName);
