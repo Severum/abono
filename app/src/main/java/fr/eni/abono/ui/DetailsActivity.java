@@ -152,14 +152,13 @@ public class DetailsActivity extends AppCompatActivity {
                         priority = Priority.OPTIONAL;
                 }
                 AppDatabase db = Connexion.getConnexion(DetailsActivity.this);
-                db.subscriptionDao().insert(new Subscription(price, frequency, name, description, priority, ));
+                db.subscriptionDao().insert(new Subscription(price, frequency, name, description, priority, 0));
             }
         }).start();
 
         Log.d("validSubscription", "Subscription added in database");
 
         Intent intentAddSubscription = new Intent(DetailsActivity.this, MainActivity.class);
-        startActivity(intentAddSubscription);
     }
 
     public void updateSubscription(View view) {
