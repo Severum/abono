@@ -3,12 +3,15 @@ package fr.eni.abono.ui;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.app.AlertDialog;
+import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Spinner;
 
@@ -26,6 +29,9 @@ public class DetailsActivity extends AppCompatActivity {
     private EditText editTextDescription;
     private Spinner priorityDropDown;
     private Spinner frequencyDropDown;
+    private Button buttonAdd;
+    private Button buttonUpdate;
+    private Button buttonRemove;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -37,6 +43,10 @@ public class DetailsActivity extends AppCompatActivity {
         editTextDescription = findViewById(R.id.editTextDescription);
         frequencyDropDown = findViewById(R.id.frequencyDropDown);
         priorityDropDown = findViewById(R.id.priorityDropDown);
+        buttonAdd = findViewById(R.id.buttonAdd);
+        buttonUpdate = findViewById(R.id.buttonUpdate);
+        buttonRemove = findViewById(R.id.buttonRemove);
+
 
         ArrayAdapter<CharSequence> frequencyAdapter =  ArrayAdapter.createFromResource(
                 this,
@@ -54,6 +64,8 @@ public class DetailsActivity extends AppCompatActivity {
 
         // test vérification extras
         if(getIntent().getExtras() != null) {
+
+
             Subscription item = (Subscription) getIntent().getExtras().get("object");
 
             editTextName.setText(item.getName());
@@ -93,7 +105,61 @@ public class DetailsActivity extends AppCompatActivity {
                 default:
                     break;
             }
+            buttonAdd.setVisibility(View.GONE);
+        } else {
+            buttonRemove.setVisibility(View.GONE);
+            buttonUpdate.setVisibility(View.GONE);
         }
+    }
+
+    public void validSubscription(View view) {
+        new Thread(new Runnable() {
+            @Override
+            public void run() {
+                float price = Float.parseFloat(editTextPrice.getText().toString());
+                String name = String.valueOf(editTextName.getText());
+                String description = String.valueOf(editTextDescription.getText());
+                Frequency frequency = null;
+                switch (frequencyDropDown.getSelectedItemPosition()) {
+                    case 0:
+                        frequency = Frequency.DAILY;
+                        break;
+                    case 1:
+                        frequency = Frequency.WEEKLY;
+                        break;
+                    case 2:
+                        frequency = Frequency.MONTHLY;
+                        break;
+                    case 3:
+                        frequency = Frequency.QUARTERLY;
+                        break;
+                    case 4:
+                        frequency = Frequency.SEMESTERLY;
+                        break;
+                    case 5:
+                        frequency = Frequency.ANNUALLY;
+                        break;
+                }
+                Priority priority = Priority.OPTIONAL;
+                switch (priorityDropDown.getSelectedItemPosition()) {
+                    case 0:
+                        priority = Priority.INDISPENSABLE;
+                        break;
+                    case 1:
+                        priority = Priority.IMPORTANT;
+                        break;
+                    case 2:
+                        priority = Priority.OPTIONAL;
+                }
+                AppDatabase db = Connexion.getConnexion(DetailsActivity.this);
+                db.subscriptionDao().insert(new Subscription(price, frequency, name, description, priority, ));
+            }
+        }).start();
+
+        Log.d("validSubscription", "Subscription added in database");
+
+        Intent intentAddSubscription = new Intent(DetailsActivity.this, MainActivity.class);
+        startActivity(intentAddSubscription);
     }
 
     public void updateSubscription(View view) {

@@ -18,6 +18,9 @@ public interface SubscriptionDao  {
     @Query("SELECT * FROM Subscription WHERE id = (:id)")
     Subscription findById(int id);
 
+    @Query("SELECT * FROM Subscription WHERE category_id = (:categoryId)")
+    List<Subscription> findByCategoryId(int categoryId);
+
     @Insert
     void insert(Subscription s);
 
