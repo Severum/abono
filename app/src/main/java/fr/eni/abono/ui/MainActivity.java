@@ -35,7 +35,9 @@ public class MainActivity extends AppCompatActivity {
         textViewTotYear = findViewById(R.id.textViewTotYear);
         listViewData = findViewById(R.id.listViewData);
 
-        startService(listViewData);  // Quel view passer en parametre ?
+        Intent serviceIntent = new Intent(MainActivity.this, CheckOffers.class);
+
+        startService(serviceIntent);
 
         final List<Subscription> subscriptions = new ArrayList<>();
 
