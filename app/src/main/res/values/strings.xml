@@ -12,6 +12,7 @@
     <string name="remove">Remove</string>
     <string name="update">Update</string>
     <string name="category">Category</string>
+    <string name="addCategory">Add a category</string>
 
     <string-array name="frequency_array">
         <item>Daily</item>
