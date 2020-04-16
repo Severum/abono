@@ -10,7 +10,7 @@ public enum Frequency {
 
     private float value;
 
-    Frequency(float value){
+    Frequency(float value) {
         this.value = value;
     }
 

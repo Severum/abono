@@ -14,17 +14,16 @@ import java.text.DecimalFormat;
 import java.util.List;
 
 import fr.eni.abono.R;
-import fr.eni.abono.bo.Subscription;
+import fr.eni.abono.bo.Category;
 
-public class SubscriptionAdapter extends ArrayAdapter<Subscription> {
+public class CategoryAdapter extends ArrayAdapter<Category> {
 
     private int resId;
 
     private static DecimalFormat df = new DecimalFormat("0.00");
 
-    public SubscriptionAdapter(@NonNull Context context, int resource, @NonNull List<Subscription> objects) {
+    public CategoryAdapter(@NonNull Context context, int resource, @NonNull List<Category> objects) {
         super(context, resource, objects);
-
         resId = resource;
     }
 
@@ -40,26 +39,21 @@ public class SubscriptionAdapter extends ArrayAdapter<Subscription> {
             myViewHolder = new ViewHolder();
 
             myViewHolder.textViewName = convertView.findViewById(R.id.textViewName);
-            myViewHolder.textViewPrice = convertView.findViewById(R.id.textViewPrice);
-            myViewHolder.textViewPriority = convertView.findViewById(R.id.textViewPriority);
-            myViewHolder.textViewFrequency = convertView.findViewById(R.id.textViewFrequency);
+            myViewHolder.textViewTotal = convertView.findViewById(R.id.textViewTotal);
 
             convertView.setTag(myViewHolder);
         } else {
-            myViewHolder = (ViewHolder) convertView.getTag();
+            myViewHolder = (CategoryAdapter.ViewHolder) convertView.getTag();
         }
 
-        Subscription item = getItem(position);
+        Category item = getItem(position);
 
         myViewHolder.textViewName.setText(item.getName());
-        myViewHolder.textViewPrice.setText(df.format(item.getPrice()) + "€");
-        myViewHolder.textViewPriority.setText(String.valueOf(item.getPriority()));
-        myViewHolder.textViewFrequency.setText(String.valueOf(item.getFrequency()));
 
         return convertView;
     }
 
     class ViewHolder {
-        TextView textViewName, textViewPrice, textViewPriority, textViewFrequency;
+        TextView textViewName, textViewTotal;
     }
 }
