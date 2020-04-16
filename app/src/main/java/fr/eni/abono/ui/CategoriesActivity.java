@@ -6,8 +6,10 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.PersistableBundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
+import android.widget.EditText;
 import android.widget.ListView;
 
 import java.util.ArrayList;
@@ -20,12 +22,17 @@ import fr.eni.abono.dao.Connexion;
 
 public class CategoriesActivity extends AppCompatActivity {
 
+    private EditText editTextCategoryName;
+    private EditText editTextCategoryDescription;
     private ListView listViewData;
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState, @Nullable PersistableBundle persistentState) {
         super.onCreate(savedInstanceState, persistentState);
         setContentView(R.layout.activity_categories);
+
+        editTextCategoryName = findViewById(R.id.editTextCategoryName);
+        editTextCategoryDescription = findViewById(R.id.editTextCategoryDescription);
 
         listViewData = findViewById(R.id.listViewData);
         final List<Category> categories = new ArrayList<>();
@@ -62,7 +69,21 @@ public class CategoriesActivity extends AppCompatActivity {
     }
 
     public void addCategory(View view) {
-        Intent intentAddCategory = new Intent(CategoriesActivity.this, DetailsActivity.class);  // remplacer DetailsActivity.class par le form de creation de categorie
+        Intent intentAddCategory = new Intent(CategoriesActivity.this, DetailsActivity.class);
+
+        new Thread(new Runnable() {
+            @Override
+            public void run() {
+                String name = String.valueOf(editTextCategoryName.getText());
+                String description = String.valueOf(editTextCategoryDescription.getText());
+                AppDatabase db = Connexion.getConnexion(CategoriesActivity.this);
+                db.categoryDao().insert(new Category(name, description));
+            }
+        }).start();
+
+        Log.d("validSubscription", "Subscription added in database");
+
+        Intent intentAddSubscription = new Intent(CategoriesActivity.this, MainActivity.class);
 
         startActivity(intentAddCategory);
     }
