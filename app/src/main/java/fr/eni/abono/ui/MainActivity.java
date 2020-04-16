@@ -44,7 +44,11 @@ public class MainActivity extends AppCompatActivity {
             public void run() {
                 AppDatabase db = Connexion.getConnexion(MainActivity.this);
                 List<Subscription> list = new ArrayList<>();
-                list = db.subscriptionDao().findAll();
+                if(getIntent().getExtras() == null) {
+                    list = db.subscriptionDao().findAll();
+                } else {
+                    list = db.subscriptionDao().findByCategoryId(getIntent().getExtras().getInt("categoryId"));
+                }
                 subscriptions.addAll(list);
 
                 float yearTot = 0.f;
@@ -83,6 +87,12 @@ public class MainActivity extends AppCompatActivity {
         Intent intentAddSubscription = new Intent(MainActivity.this, DetailsActivity.class);
 
         startActivity(intentAddSubscription);
+    }
+
+    public void categoryView(View view) {
+        Intent intentCategory = new Intent(MainActivity.this, CategoriesActivity.class);
+
+        startActivity(intentCategory);
     }
 
     public void startService(View view) {

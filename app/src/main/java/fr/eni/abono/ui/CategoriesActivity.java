@@ -25,6 +25,7 @@ public class CategoriesActivity extends AppCompatActivity {
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState, @Nullable PersistableBundle persistentState) {
         super.onCreate(savedInstanceState, persistentState);
+        setContentView(R.layout.activity_categories);
 
         listViewData = findViewById(R.id.listViewData);
         final List<Category> categories = new ArrayList<>();
@@ -51,10 +52,18 @@ public class CategoriesActivity extends AppCompatActivity {
 
                 Category item = categories.get(position);
 
-                Intent intent = new Intent(CategoriesActivity.this, DetailsActivity.class);
+                Intent intent = new Intent(CategoriesActivity.this, MainActivity.class);
+
+                intent.putExtra("categoryId", item.getId());
 
                 startActivity(intent);
             }
         });
+    }
+
+    public void addCategory(View view) {
+        Intent intentAddCategory = new Intent(CategoriesActivity.this, DetailsActivity.class);  // remplacer DetailsActivity.class par le form de creation de categorie
+
+        startActivity(intentAddCategory);
     }
 }

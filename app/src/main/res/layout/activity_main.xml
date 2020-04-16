@@ -64,13 +64,22 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:gravity="bottom"
-        android:orientation="vertical">
+        android:orientation="horizontal">
+
+        <Button
+            android:id="@+id/buttonCategory"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/category"
+            android:layout_weight="1"
+            android:onClick="categoryView"/>
 
         <Button
             android:id="@+id/buttonAdd"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="@string/add"
+            android:layout_weight="1"
             android:onClick="addSubscription"/>
 
     </LinearLayout>

@@ -11,6 +11,7 @@
     <string name="description_field_label">Description</string>
     <string name="remove">Remove</string>
     <string name="update">Update</string>
+    <string name="category">Category</string>
 
     <string-array name="frequency_array">
         <item>Daily</item>
