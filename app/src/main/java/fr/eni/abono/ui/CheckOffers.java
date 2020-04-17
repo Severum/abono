@@ -21,12 +21,15 @@ import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 import com.google.gson.Gson;
 
+import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.io.FileReader;
+import java.util.ArrayList;
 
 import fr.eni.abono.R;
+import fr.eni.abono.bo.Offer;
 
 public class CheckOffers extends Service {
     @Nullable
@@ -46,12 +49,17 @@ public class CheckOffers extends Service {
                     @Override
                     public void onResponse(String response) {
                         Toast.makeText(CheckOffers.this, "succes", Toast.LENGTH_LONG).show();
-                        Log.e("","res: "+response); // reponse degeulasse
+                        Log.e("","res: "+response);
                         Gson gson = new Gson();
                         JSONObject jsonObject = null;
                         try {
                             jsonObject = new JSONObject(response);
-                            // gson.fromJson(jsonObject.getJSONObject("data").toString(), People.class);
+                            JSONArray temp = jsonObject.getJSONArray("records");
+                            ArrayList<Offer> test = new ArrayList<Offer>();
+                            for (int i = 0; i<temp.length(); i++) {
+                                test.add(gson.fromJson(temp.getJSONObject(i).toString(), Offer.class));
+                                Log.e("","res: "+test.get(i).toString());
+                            }
                         } catch (JSONException e) {
                             e.printStackTrace();
                         }
