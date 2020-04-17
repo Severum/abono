@@ -96,8 +96,4 @@ public class MainActivity extends AppCompatActivity {
 
         startActivity(intentCategory);
     }
-
-    public void startService(View view) {
-        startService(new Intent(getBaseContext(), CheckOffers.class));
-    }
 }

@@ -28,7 +28,7 @@ public class CheckOffers extends Service {
         // notification
         NotificationCompat.Builder builder;
 
-        builder = new NotificationCompat.Builder(this, ""); // il faudrait ajouter un channel id en parametre mais je sais pas quoi mettre
+        builder = new NotificationCompat.Builder(this, "");
         builder.setAutoCancel(true);
 
         builder.setSmallIcon(R.drawable.ic_launcher_foreground);
