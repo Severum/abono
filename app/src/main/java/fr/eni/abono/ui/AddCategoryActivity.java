@@ -85,7 +85,7 @@ public class AddCategoryActivity extends AppCompatActivity {
         new Thread(new Runnable() {
             @Override
             public void run() {
-                Category item = (Category) getIntent().getExtras().get("object");
+                Category item = (Category) getIntent().getExtras().get("category");
                 item.setName(String.valueOf(editTextCategoryName.getText()));
                 item.setDescription(String.valueOf(editTextCategoryDescription.getText()));
                 AppDatabase db = Connexion.getConnexion(AddCategoryActivity.this);
