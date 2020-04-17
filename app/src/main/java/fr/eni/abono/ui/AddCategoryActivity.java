@@ -4,7 +4,6 @@ import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
-import android.os.PersistableBundle;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -18,7 +17,6 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import fr.eni.abono.R;
 import fr.eni.abono.bo.Category;
-import fr.eni.abono.bo.Subscription;
 import fr.eni.abono.dao.AppDatabase;
 import fr.eni.abono.dao.Connexion;
 
@@ -47,14 +45,10 @@ public class AddCategoryActivity extends AppCompatActivity {
         buttonUpdate = findViewById(R.id.buttonUpdate);
         buttonRemove = findViewById(R.id.buttonRemove);
 
-        // test vérification extras
         if(getIntent().getExtras() != null) {
-
             Category item = (Category) getIntent().getExtras().get("category");
-
             editTextCategoryName.setText(item.getName());
             editTextCategoryDescription.setText(item.getDescription());
-
             buttonAdd.setVisibility(View.GONE);
         } else {
             buttonRemove.setVisibility(View.GONE);
@@ -73,11 +67,8 @@ public class AddCategoryActivity extends AppCompatActivity {
                 db.close();
             }
         }).start();
-
         Log.d("validCategory", "Subscription added in database");
-
         Intent intentCategory = new Intent(AddCategoryActivity.this, CategoriesActivity.class);
-
         startActivity(intentCategory);
     }
 
@@ -102,13 +93,10 @@ public class AddCategoryActivity extends AppCompatActivity {
 
     public void removeCategory(View view) {
         final Category item = (Category) getIntent().getExtras().get("object");
-
         new AlertDialog.Builder(AddCategoryActivity.this)
                 .setTitle("Delete entry")
                 .setMessage("Are you sure you want to delete this entry?")
 
-                // Specifying a listener allows you to take an action before dismissing the dialog.
-                // The dialog is automatically dismissed when a dialog button is clicked.
                 .setPositiveButton(android.R.string.yes, new DialogInterface.OnClickListener() {
                     public void onClick(DialogInterface dialog, int which) {
                         new Thread(new Runnable() {
@@ -126,8 +114,6 @@ public class AddCategoryActivity extends AppCompatActivity {
                         startActivity(intentAddSubscription);
                     }
                 })
-
-                // A null listener allows the button to dismiss the dialog and take no further action.
                 .setNegativeButton(android.R.string.no, null)
                 .setIcon(android.R.drawable.ic_dialog_alert)
                 .show();

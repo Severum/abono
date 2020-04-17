@@ -6,7 +6,6 @@ import android.app.PendingIntent;
 import android.app.Service;
 import android.content.Intent;
 import android.os.IBinder;
-import android.util.JsonReader;
 import android.util.Log;
 import android.widget.Toast;
 
@@ -25,7 +24,6 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import java.io.FileReader;
 import java.util.ArrayList;
 
 import fr.eni.abono.R;
@@ -40,9 +38,7 @@ public class CheckOffers extends Service {
 
     @Override
     public int onStartCommand(Intent intent, int flags, int startId) {
-        // API call
         RequestQueue queue = Volley.newRequestQueue(this);
-
         StringRequest stringRequest = new StringRequest(Request.Method.GET, "https://data.rennesmetropole.fr/api/records/1.0/search/?dataset=titres-et-tarifs-du-reseau-star&sort=libelleproduit&facet=libelleexploitant&facet=libellefamille&facet=libelletypevalidite&facet=estenvente&facet=tauxtva&facet=visibilite",
                 new Response.Listener<String>() {
                     @Override
@@ -88,7 +84,6 @@ public class CheckOffers extends Service {
                 Toast.makeText(CheckOffers.this, "APi Error", Toast.LENGTH_LONG).show();
             }
         });
-
         queue.add(stringRequest);
         return START_STICKY;
     }

@@ -4,7 +4,6 @@ import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.app.AlertDialog;
-import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
@@ -12,15 +11,10 @@ import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
-import android.view.inputmethod.InputMethodManager;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Spinner;
-
-import java.lang.reflect.Array;
-import java.util.ArrayList;
-import java.util.List;
 
 import fr.eni.abono.R;
 import fr.eni.abono.bo.Category;
@@ -85,16 +79,11 @@ public class DetailsActivity extends AppCompatActivity {
                 db.close();
             }
         }).start();
-
-        // test vérification extras
         if(getIntent().getExtras() != null) {
-
             Subscription item = (Subscription) getIntent().getExtras().get("object");
-
             editTextName.setText(item.getName());
             editTextPrice.setText(String.valueOf(item.getPrice()));
             editTextDescription.setText(item.getDescription());
-
             switch (item.getFrequency()) {
                 case DAILY:
                     frequencyDropDown.setSelection(0);
@@ -114,7 +103,6 @@ public class DetailsActivity extends AppCompatActivity {
                 case ANNUALLY:
                     frequencyDropDown.setSelection(5);
             }
-
             switch (item.getPriority()) {
                 case INDISPENSABLE:
                     priorityDropDown.setSelection(0);
@@ -180,9 +168,7 @@ public class DetailsActivity extends AppCompatActivity {
                 db.close();
             }
         }).start();
-
         Log.d("validSubscription", "Subscription added in database");
-
         Intent intentAddCategory = new Intent(DetailsActivity.this, MainActivity.class);
         startActivity(intentAddCategory);
 
@@ -230,16 +216,13 @@ public class DetailsActivity extends AppCompatActivity {
                 db.close();
             }
         }).start();
-
         Log.d("validSubscription", "Subscription added in database");
-
         Intent intentAddSubscription = new Intent(DetailsActivity.this, MainActivity.class);
         startActivity(intentAddSubscription);
     }
 
     public void removeSubscription(View view) {
         final Subscription item = (Subscription) getIntent().getExtras().get("object");
-
         new AlertDialog.Builder(DetailsActivity.this)
                 .setTitle("Delete entry")
                 .setMessage("Are you sure you want to delete this entry?")
@@ -263,8 +246,6 @@ public class DetailsActivity extends AppCompatActivity {
                         startActivity(intentAddSubscription);
                     }
                 })
-
-                // A null listener allows the button to dismiss the dialog and take no further action.
                 .setNegativeButton(android.R.string.no, null)
                 .setIcon(android.R.drawable.ic_dialog_alert)
                 .show();
