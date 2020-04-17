@@ -80,7 +80,6 @@ public class DetailsActivity extends AppCompatActivity {
         // test vérification extras
         if(getIntent().getExtras() != null) {
 
-
             Subscription item = (Subscription) getIntent().getExtras().get("object");
 
             editTextName.setText(item.getName());
