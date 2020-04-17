@@ -11,6 +11,13 @@ import android.widget.Toast;
 import androidx.annotation.Nullable;
 import androidx.core.app.NotificationCompat;
 
+import com.android.volley.Request;
+import com.android.volley.RequestQueue;
+import com.android.volley.Response;
+import com.android.volley.VolleyError;
+import com.android.volley.toolbox.StringRequest;
+import com.android.volley.toolbox.Volley;
+
 import fr.eni.abono.R;
 
 public class CheckOffers extends Service {
@@ -22,8 +29,24 @@ public class CheckOffers extends Service {
 
     @Override
     public int onStartCommand(Intent intent, int flags, int startId) {
-        Toast.makeText(this, "Service Start", Toast.LENGTH_LONG).show();
+        //Toast.makeText(this, "Service Start", Toast.LENGTH_LONG).show();
         // API call
+        RequestQueue queue = Volley.newRequestQueue(this);
+
+        StringRequest stringRequest = new StringRequest(Request.Method.GET, "http://www.google.com",
+                new Response.Listener<String>() {
+                    @Override
+                    public void onResponse(String response) {
+                        Toast.makeText(CheckOffers.this, "succes", Toast.LENGTH_LONG).show();
+                    }
+                }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+                Toast.makeText(CheckOffers.this, "Error", Toast.LENGTH_LONG).show();
+            }
+        });
+
+        queue.add(stringRequest);
 
         // notification
         NotificationCompat.Builder builder;

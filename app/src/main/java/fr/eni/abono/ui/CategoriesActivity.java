@@ -69,6 +69,21 @@ public class CategoriesActivity extends AppCompatActivity {
                 startActivity(intent);
             }
         });
+
+        listViewData.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
+            @Override
+            public boolean onItemLongClick(AdapterView<?> parent, View view, int position, long id) {
+                Category item = categories.get(position);
+
+                Intent intent = new Intent(CategoriesActivity.this, AddCategoryActivity.class);
+
+                intent.putExtra("category", item);
+
+                startActivity(intent);
+
+                return true;
+            }
+        });
     }
 
     public void addCategory(View view) {

@@ -50,7 +50,7 @@ public class AddCategoryActivity extends AppCompatActivity {
         // test vérification extras
         if(getIntent().getExtras() != null) {
 
-            Subscription item = (Subscription) getIntent().getExtras().get("object");
+            Category item = (Category) getIntent().getExtras().get("category");
 
             editTextCategoryName.setText(item.getName());
             editTextCategoryDescription.setText(item.getDescription());
