@@ -47,6 +47,7 @@ public class CategoriesActivity extends AppCompatActivity {
                 List<Category> list = new ArrayList<>();
                 list = db.categoryDao().findAll();
                 categories.addAll(list);
+                db.close();
             }
         }).start();
 

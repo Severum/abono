@@ -52,6 +52,7 @@ public class MainActivity extends AppCompatActivity {
                     list = db.subscriptionDao().findByCategoryId(getIntent().getExtras().getInt("categoryId"));
                 }
                 subscriptions.addAll(list);
+                db.close();
 
                 float yearTot = 0.f;
                 for (Subscription s : subscriptions) {
