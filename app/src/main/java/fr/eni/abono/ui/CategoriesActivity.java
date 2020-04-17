@@ -77,6 +77,15 @@ public class CategoriesActivity extends AppCompatActivity {
         startActivity(intentAddCategory);
     }
 
+    @Override
+    public void onBackPressed()
+    {
+        super.onBackPressed();
+        startActivity(new Intent(CategoriesActivity.this, MainActivity.class));
+        finish();
+
+    }
+
     public boolean onOptionsItemSelected(MenuItem item){
         switch (item.getItemId()) {
             case android.R.id.home:
