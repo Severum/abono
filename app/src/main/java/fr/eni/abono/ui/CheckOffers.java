@@ -6,7 +6,6 @@ import android.app.PendingIntent;
 import android.app.Service;
 import android.content.Intent;
 import android.os.IBinder;
-import android.util.JsonReader;
 import android.util.Log;
 import android.widget.Toast;
 
@@ -25,7 +24,6 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import java.io.FileReader;
 import java.util.ArrayList;
 
 import fr.eni.abono.R;
@@ -40,10 +38,7 @@ public class CheckOffers extends Service {
 
     @Override
     public int onStartCommand(Intent intent, int flags, int startId) {
-        //Toast.makeText(this, "Service Start", Toast.LENGTH_LONG).show();
-        // API call
         RequestQueue queue = Volley.newRequestQueue(this);
-
         StringRequest stringRequest = new StringRequest(Request.Method.GET, "https://data.rennesmetropole.fr/api/records/1.0/search/?dataset=titres-et-tarifs-du-reseau-star&sort=libelleproduit&facet=libelleexploitant&facet=libellefamille&facet=libelletypevalidite&facet=estenvente&facet=tauxtva&facet=visibilite",
                 new Response.Listener<String>() {
                     @Override
@@ -70,26 +65,19 @@ public class CheckOffers extends Service {
                 Toast.makeText(CheckOffers.this, "Error", Toast.LENGTH_LONG).show();
             }
         });
-
         queue.add(stringRequest);
-
-        // notification
         NotificationCompat.Builder builder;
-
         builder = new NotificationCompat.Builder(this, "");
         builder.setAutoCancel(true);
-
         builder.setSmallIcon(R.drawable.ic_launcher_foreground);
         builder.setTicker("Notification Here");
         builder.setPriority(Notification.PRIORITY_DEFAULT);
         builder.setWhen(System.currentTimeMillis());
         builder.setContentTitle("Hello World");
         builder.setContentText("Hello everyOne !!!!");
-
         Intent intent2 = new Intent(this, MainActivity.class);
         PendingIntent pendingIntent = PendingIntent.getActivity(this, 0, intent2, PendingIntent.FLAG_UPDATE_CURRENT);
         builder.setContentIntent(pendingIntent);
-
         NotificationManager notificationManager = (NotificationManager)getSystemService(NOTIFICATION_SERVICE);
         notificationManager.notify(0, builder.build());
 

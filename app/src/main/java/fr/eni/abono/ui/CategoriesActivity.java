@@ -1,18 +1,14 @@
 package fr.eni.abono.ui;
 
-import androidx.annotation.Nullable;
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.os.PersistableBundle;
-import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
-import android.widget.EditText;
 import android.widget.ListView;
 
 import java.util.ArrayList;
@@ -60,13 +56,9 @@ public class CategoriesActivity extends AppCompatActivity {
         listViewData.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-
                 Category item = categories.get(position);
-
                 Intent intent = new Intent(CategoriesActivity.this, MainActivity.class);
-
                 intent.putExtra("categoryId", item.getId());
-
                 startActivity(intent);
             }
         });
@@ -75,13 +67,9 @@ public class CategoriesActivity extends AppCompatActivity {
             @Override
             public boolean onItemLongClick(AdapterView<?> parent, View view, int position, long id) {
                 Category item = categories.get(position);
-
                 Intent intent = new Intent(CategoriesActivity.this, AddCategoryActivity.class);
-
                 intent.putExtra("category", item);
-
                 startActivity(intent);
-
                 return true;
             }
         });
@@ -89,7 +77,6 @@ public class CategoriesActivity extends AppCompatActivity {
 
     public void addCategory(View view) {
         Intent intentAddCategory = new Intent(CategoriesActivity.this, AddCategoryActivity.class);
-
         startActivity(intentAddCategory);
     }
 

@@ -35,21 +35,15 @@ public class CategoryAdapter extends ArrayAdapter<Category> {
 
         if(convertView == null) {
             convertView = LayoutInflater.from(getContext()).inflate(resId, null);
-
             myViewHolder = new ViewHolder();
-
             myViewHolder.textViewName = convertView.findViewById(R.id.textViewName);
             myViewHolder.textViewTotal = convertView.findViewById(R.id.textViewTotal);
-
             convertView.setTag(myViewHolder);
         } else {
             myViewHolder = (CategoryAdapter.ViewHolder) convertView.getTag();
         }
-
         Category item = getItem(position);
-
         myViewHolder.textViewName.setText(item.getName());
-
         return convertView;
     }
 
