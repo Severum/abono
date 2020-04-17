@@ -6,6 +6,8 @@ import android.app.PendingIntent;
 import android.app.Service;
 import android.content.Intent;
 import android.os.IBinder;
+import android.util.JsonReader;
+import android.util.Log;
 import android.widget.Toast;
 
 import androidx.annotation.Nullable;
@@ -17,6 +19,12 @@ import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
+import com.google.gson.Gson;
+
+import org.json.JSONException;
+import org.json.JSONObject;
+
+import java.io.FileReader;
 
 import fr.eni.abono.R;
 
@@ -33,11 +41,20 @@ public class CheckOffers extends Service {
         // API call
         RequestQueue queue = Volley.newRequestQueue(this);
 
-        StringRequest stringRequest = new StringRequest(Request.Method.GET, "http://www.google.com",
+        StringRequest stringRequest = new StringRequest(Request.Method.GET, "https://data.rennesmetropole.fr/api/records/1.0/search/?dataset=titres-et-tarifs-du-reseau-star&sort=libelleproduit&facet=libelleexploitant&facet=libellefamille&facet=libelletypevalidite&facet=estenvente&facet=tauxtva&facet=visibilite",
                 new Response.Listener<String>() {
                     @Override
                     public void onResponse(String response) {
                         Toast.makeText(CheckOffers.this, "succes", Toast.LENGTH_LONG).show();
+                        Log.e("","res: "+response); // reponse degeulasse
+                        Gson gson = new Gson();
+                        JSONObject jsonObject = null;
+                        try {
+                            jsonObject = new JSONObject(response);
+                            // gson.fromJson(jsonObject.getJSONObject("data").toString(), People.class);
+                        } catch (JSONException e) {
+                            e.printStackTrace();
+                        }
                     }
                 }, new Response.ErrorListener() {
             @Override
