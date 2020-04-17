@@ -4,7 +4,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context=".ui.DetailsActivity">
+    tools:context=".ui.AddCategoryActivity">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -49,14 +49,14 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="@string/remove"
-            android:onClick="removeSubscription"/>
+            android:onClick="removeCategory"/>
 
         <Button
             android:id="@+id/buttonUpdate"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="@string/update"
-            android:onClick="updateSubscription"/>
+            android:onClick="updateCategory"/>
 
         <Button
             android:id="@+id/buttonAdd"

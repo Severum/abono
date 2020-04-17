@@ -70,6 +70,7 @@ public class AddCategoryActivity extends AppCompatActivity {
                 String description = String.valueOf(editTextCategoryDescription.getText());
                 AppDatabase db = Connexion.getConnexion(AddCategoryActivity.this);
                 db.categoryDao().insert(new Category(name, description));
+                db.close();
             }
         }).start();
 
@@ -89,16 +90,17 @@ public class AddCategoryActivity extends AppCompatActivity {
                 item.setDescription(String.valueOf(editTextCategoryDescription.getText()));
                 AppDatabase db = Connexion.getConnexion(AddCategoryActivity.this);
                 db.categoryDao().update(item);
+                db.close();
             }
         }).start();
 
-        Log.d("validSubscription", "Subscription added in database");
+        Log.d("updateCategory", "Category updated");
 
         Intent intentAddSubscription = new Intent(AddCategoryActivity.this, CategoriesActivity.class);
         startActivity(intentAddSubscription);
     }
 
-    public void removeSubscription(View view) {
+    public void removeCategory(View view) {
         final Category item = (Category) getIntent().getExtras().get("object");
 
         new AlertDialog.Builder(AddCategoryActivity.this)
@@ -114,6 +116,7 @@ public class AddCategoryActivity extends AppCompatActivity {
                             public void run() {
                                 AppDatabase db = Connexion.getConnexion(AddCategoryActivity.this);
                                 db.categoryDao().delete(item);
+                                db.close();
                             }
                         }).start();
 

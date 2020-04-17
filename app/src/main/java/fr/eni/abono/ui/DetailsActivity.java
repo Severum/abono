@@ -82,6 +82,7 @@ public class DetailsActivity extends AppCompatActivity {
                 AppDatabase db = Connexion.getConnexion(DetailsActivity.this);
                 ArrayAdapter<Category> categoryAdapter = new ArrayAdapter<Category>(DetailsActivity.this, android.R.layout.simple_spinner_dropdown_item, db.categoryDao().findAll());
                 categoryDropDown.setAdapter(categoryAdapter);
+                db.close();
             }
         }).start();
 
@@ -176,6 +177,7 @@ public class DetailsActivity extends AppCompatActivity {
                 AppDatabase db = Connexion.getConnexion(DetailsActivity.this);
                 Category category = (Category) categoryDropDown.getSelectedItem();
                 db.subscriptionDao().insert(new Subscription(price, frequency, name, description, priority, category.getId()));
+                db.close();
             }
         }).start();
 
@@ -225,6 +227,7 @@ public class DetailsActivity extends AppCompatActivity {
                 item.setDescription(String.valueOf(editTextDescription.getText()));
                 AppDatabase db = Connexion.getConnexion(DetailsActivity.this);
                 db.subscriptionDao().update(item);
+                db.close();
             }
         }).start();
 
@@ -250,6 +253,7 @@ public class DetailsActivity extends AppCompatActivity {
                             public void run() {
                                 AppDatabase db = Connexion.getConnexion(DetailsActivity.this);
                                 db.subscriptionDao().delete(item);
+                                db.close();
                             }
                         }).start();
 
