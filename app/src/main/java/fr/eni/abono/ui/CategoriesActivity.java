@@ -22,17 +22,12 @@ import fr.eni.abono.dao.Connexion;
 
 public class CategoriesActivity extends AppCompatActivity {
 
-    private EditText editTextCategoryName;
-    private EditText editTextCategoryDescription;
     private ListView listViewData;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_categories);
-
-        editTextCategoryName = findViewById(R.id.editTextCategoryName);
-        editTextCategoryDescription = findViewById(R.id.editTextCategoryDescription);
 
         listViewData = findViewById(R.id.listViewData);
         final List<Category> categories = new ArrayList<>();
@@ -69,21 +64,7 @@ public class CategoriesActivity extends AppCompatActivity {
     }
 
     public void addCategory(View view) {
-        Intent intentAddCategory = new Intent(CategoriesActivity.this, DetailsActivity.class);
-
-        new Thread(new Runnable() {
-            @Override
-            public void run() {
-                String name = String.valueOf(editTextCategoryName.getText());
-                String description = String.valueOf(editTextCategoryDescription.getText());
-                AppDatabase db = Connexion.getConnexion(CategoriesActivity.this);
-                db.categoryDao().insert(new Category(name, description));
-            }
-        }).start();
-
-        Log.d("validSubscription", "Subscription added in database");
-
-        Intent intentAddSubscription = new Intent(CategoriesActivity.this, MainActivity.class);
+        Intent intentAddCategory = new Intent(CategoriesActivity.this, AddCategoryActivity.class);
 
         startActivity(intentAddCategory);
     }

@@ -14,7 +14,7 @@ import fr.eni.abono.dao.PriorityConverter;
 @Entity(foreignKeys = @ForeignKey(entity = Category.class,
         parentColumns = "id",
         childColumns = "category_id",
-        onDelete = ForeignKey.NO_ACTION))
+        onDelete = ForeignKey.SET_NULL))
 public class Subscription implements Serializable {
 
     @PrimaryKey(autoGenerate = true)

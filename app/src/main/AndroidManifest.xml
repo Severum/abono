@@ -12,12 +12,11 @@
         <service
             android:name=".ui.CheckOffers"
             android:enabled="true"
-            android:exported="true"></service>
-
+            android:exported="true">
+        </service>
         <activity android:name=".ui.DetailsActivity" />
-        <activity android:name=".ui.AddSubscriptionActivity" />
-        <activity android:name=".ui.CategoriesActivity"></activity>
-        <activity android:name=".ui.DetailsActivity" />
+        <activity android:name=".ui.AddCategoryActivity" />
+        <activity android:name=".ui.CategoriesActivity"/>
         <activity android:name=".ui.MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
