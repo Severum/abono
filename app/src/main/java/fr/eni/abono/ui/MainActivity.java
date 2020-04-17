@@ -30,17 +30,12 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-
         textViewTotMonth = findViewById(R.id.textViewTotMonth);
         textViewTotYear = findViewById(R.id.textViewTotYear);
         listViewData = findViewById(R.id.listViewData);
-
         Intent serviceIntent = new Intent(MainActivity.this, CheckOffers.class);
-
         startService(serviceIntent);
-
         final List<Subscription> subscriptions = new ArrayList<>();
-
         new Thread(new Runnable() {
             @Override
             public void run() {
@@ -53,34 +48,26 @@ public class MainActivity extends AppCompatActivity {
                 }
                 subscriptions.addAll(list);
                 db.close();
-
                 float yearTot = 0.f;
                 for (Subscription s : subscriptions) {
                     yearTot += s.getPrice() * (1/s.getFrequency().getValue());
                 }
-
                 textViewTotMonth.setText("" + df.format(yearTot / 12) + "€");
                 textViewTotYear.setText("" + df.format(yearTot) + "€");
 
             }
         }).start();
-
         listViewData.setAdapter(new SubscriptionAdapter(
                 MainActivity.this,
                 R.layout.item_subscription,
                 subscriptions
         ));
-
         listViewData.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-
                 Subscription item = subscriptions.get(position);
-
                 Intent intent = new Intent(MainActivity.this, DetailsActivity.class);
-
                 intent.putExtra("object", item);
-
                 startActivity(intent);
             }
         });
@@ -88,13 +75,11 @@ public class MainActivity extends AppCompatActivity {
 
     public void addSubscription(View view) {
         Intent intentAddSubscription = new Intent(MainActivity.this, DetailsActivity.class);
-
         startActivity(intentAddSubscription);
     }
 
     public void categoryView(View view) {
         Intent intentCategory = new Intent(MainActivity.this, CategoriesActivity.class);
-
         startActivity(intentCategory);
     }
 }
