@@ -166,13 +166,16 @@ public class DetailsActivity extends AppCompatActivity {
                         priority = Priority.OPTIONAL;
                 }
                 AppDatabase db = Connexion.getConnexion(DetailsActivity.this);
-                db.subscriptionDao().insert(new Subscription(price, frequency, name, description, priority, 0));
+                Category category = (Category) categoryDropDown.getSelectedItem();
+                db.subscriptionDao().insert(new Subscription(price, frequency, name, description, priority, category.getId()));
             }
         }).start();
 
         Log.d("validSubscription", "Subscription added in database");
 
-        Intent intentAddSubscription = new Intent(DetailsActivity.this, MainActivity.class);
+        Intent intentAddCategory = new Intent(DetailsActivity.this, MainActivity.class);
+        startActivity(intentAddCategory);
+
     }
 
     public void updateSubscription(View view) {
