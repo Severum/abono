@@ -6,11 +6,14 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.os.PersistableBundle;
 import android.util.Log;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 
 import androidx.annotation.Nullable;
+import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 
 import fr.eni.abono.R;
@@ -32,6 +35,11 @@ public class AddCategoryActivity extends AppCompatActivity {
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.detail_category_activity);
+
+        ActionBar actionBar = getSupportActionBar();
+        if (actionBar != null) {
+            actionBar.setDisplayHomeAsUpEnabled(true);
+        }
 
         editTextCategoryName = findViewById(R.id.editTextCategoryName);
         editTextCategoryDescription = findViewById(R.id.editTextCategoryDescription);
@@ -68,6 +76,8 @@ public class AddCategoryActivity extends AppCompatActivity {
         Log.d("validCategory", "Subscription added in database");
 
         Intent intentCategory = new Intent(AddCategoryActivity.this, CategoriesActivity.class);
+
+        startActivity(intentCategory);
     }
 
     public void updateCategory(View view) {
@@ -118,5 +128,18 @@ public class AddCategoryActivity extends AppCompatActivity {
                 .setNegativeButton(android.R.string.no, null)
                 .setIcon(android.R.drawable.ic_dialog_alert)
                 .show();
+    }
+
+    public boolean onOptionsItemSelected(MenuItem item){
+        switch (item.getItemId()) {
+            case android.R.id.home:
+                finish();
+                return true;
+        }
+        return super.onOptionsItemSelected(item);
+    }
+
+    public boolean onCreateOptionsMenu(Menu menu) {
+        return true;
     }
 }
